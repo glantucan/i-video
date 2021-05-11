@@ -1,0 +1,11 @@
+{
+    "search.exclude": {
+        "**/.cache": true,
+        "**/_discarded": true,
+        "**/dist": true,
+        "**/node_modules": true
+    },
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?"
+}

@@ -1,0 +1,32 @@
+$header-row-color:  #f0f0f0a1;
+$odd-row-color: #d5d5d55d;
+
+.mc-table {
+  width:100%;
+  border-collapse: collapse;
+
+  &__header {
+    border-bottom: 2px solid #222;
+    background-color: $header-row-color;
+  }
+  
+  &__row {
+    border-bottom: 1px solid #222;
+    
+    &:nth-child(odd) {
+      background-color: $odd-row-color;
+    }
+  }
+  &__header-cell:first-child {
+    text-align: left;
+  }
+  &__cell{
+    text-align: center;
+    
+    &:first-child {
+      text-align: left;
+    }
+
+  }
+}
+

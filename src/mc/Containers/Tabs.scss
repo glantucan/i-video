@@ -1,0 +1,41 @@
+.mc-tabs {
+  display:flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  border:0;
+
+  &__labels {
+    display:flex;
+    flex-direction: row;
+    background-color: rgba(200, 200, 200, 0.6); ;
+  }
+
+  &__label {
+    user-select: none;
+    cursor: pointer;
+    padding: .3rem 1rem .1rem 1rem;
+    margin-right: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #555;
+
+    &.selected {
+      background-color: rgba(255, 255, 255, 0.6);
+      color: unset;
+    }
+  }
+
+  &__contents {
+    display:flex;
+    flex-direction: row;
+  }
+  &__content {
+    display:none;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 1rem;
+
+
+    &.selected {
+      display: block;
+    }
+  }
+}

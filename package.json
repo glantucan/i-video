@@ -1,0 +1,50 @@
+{
+  "name": "i-video",
+  "version": "1.0.0",
+  "description": "A try to implement H5P Interactive Video using just mithril.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glantucan/i-video.git"
+  },
+  "author": "Glantucan (Óscar Espeso Gil)",
+  "license": "GNU Affero General Public License v3.0",
+  "bugs": {
+    "url": "https://gitlab.com/glantucan/async-programming-course/issues"
+  },
+  "homepage": "https://gitlab.com/glantucan/async-programming-course#readme",
+  "scripts": {
+    "start": "cp -r ./static/* ./dist/ && parcel serve src/index.html src/index.js",
+    "build": "yarn clean; parcel build ./src/index.js --public-url ./",
+    "clean": "rm -rf ./dist/*"
+  },
+  "alias": {
+    "globals-scss": "/src/localGlobals.scss",
+    "no-globals-scss": "/src/productionGlobals.scss"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.10.4",
+    "cssnano": "^4.1.10",
+    "esm": "^3.2.25",
+    "jsdom": "^16.3.0",
+    "meiosis-tracer": "^4.0.0",
+    "mithril-query": "^3.1.0",
+    "nodemon": "^2.0.4",
+    "sass": "^1.32.8",
+    "tap-simple": "^0.3.1",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.0.1",
+    "tape-promise": "^4.0.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "@babel/runtime": "^7.9.2",
+    "bowser": "^2.9.0",
+    "components": "^0.1.0",
+    "mithril": "^2.0.4",
+    "normalize.css": "^8.0.1"
+  }
+}

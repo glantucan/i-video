@@ -1,0 +1,1 @@
+svgo tapon/tapon_anda_frente_* -o optimized; cp optimized/* ../../dist/assets/optimized/

@@ -1,0 +1,17 @@
+
+.mc-container {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  
+  &--v-scroll {
+    overflow-y: auto;
+  }
+
+  &--row {
+    flex-direction: row;
+  }
+  
+}
