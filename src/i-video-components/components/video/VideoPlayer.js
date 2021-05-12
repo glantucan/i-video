@@ -12,7 +12,7 @@ var initialState = {
   duration: 0,
   progress: 0,  
 };
-var events = {
+var internalEvents = {
   vStateChanges$: stream(VSTATES.NOT_READY),
   videoReady$: stream(false),
   videoProgress$: stream({
@@ -25,15 +25,30 @@ var events = {
 
 function VideoPlayer() {
 
-  var state$ = VideoModel(initialState, events);
+  var state$ = VideoModel(initialState, internalEvents);
   var actions = VideoActions(state$);
+  
   return {
+    oninit(v) {
+      v.sinks = {
+        videoState$: state$.map( s => ({
+          vState: s.vState, 
+          progress: s.progress
+        })),
+      };
+    },
     view({ attrs: { url, canSeek = true } }) {
-      return m('.mc-video-player' , {},
+      
+      return m('.mc-video-player' , {
+          style: {
+            width: '90%',
+            border: 'lightgray solid 1px'
+          }
+        },
         m( Video, { 
           url,
           state: state$(),
-          events: events,
+          sources: internalEvents,
         }),
         m( VideoControls, {
           state: state$(),

@@ -14,8 +14,7 @@ const VSTATES = {
  * @returns {stream}
  */
 function VideoModel(initial, sources) {
-  console.log(sources)
-  
+
   var { 
       vStateChanges$, videoReady$, videoProgress$
   } = sources;
@@ -25,7 +24,6 @@ function VideoModel(initial, sources) {
     stream(initial), 
     videoReady$
   ]).map( ([state, videoReadyEvent]) => {
-    console.log(videoReadyEvent);
     return {
       ...state,
       vState: videoReadyEvent ? VSTATES.IDLE : state.vState,
@@ -46,7 +44,6 @@ function VideoModel(initial, sources) {
       ({target: {currentTime:t, duration:d}}) => 100 * t / d ), 
   ])
   .map(([state, stateChange, progress]) => {
-    console.log(state.vState)
     return {
       ...state,
       vState: stateChange ? stateChange : state.vState,

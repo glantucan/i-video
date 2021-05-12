@@ -2,15 +2,12 @@ import m from 'mithril';
 
 function Video() {
   return {
-    oncreate({dom}){
-      console.log(dom);
-    },
     view(vnode) {
-      var { attrs: { state: { STATES, vState } , url, events: { vStateChanges$, videoReady$, videoProgress$ } }} = vnode;
+      var { attrs: { state: { STATES, vState } , url, sources: { vStateChanges$, videoReady$, videoProgress$ } }} = vnode;
 
       return m( 'video', {
           style: {
-            width: '90%'
+            width: '100%'
           },
           oncanplay: videoReady$,
           ontimeupdate: videoProgress$,

@@ -4,7 +4,6 @@ function VideoPlayerActions(state$) {
       //??
     },
     play() {
-      console.log(state$());
       if (state$().vState !== state$().STATES.PLAYING) {
         state$().videoDom.play();
       }
@@ -15,9 +14,8 @@ function VideoPlayerActions(state$) {
       }
     },
     seek(percent) {
-      if (videoReady$().loaded) {
-        state$().dom.currentTime = state$().duration * percent / 100;
-      }
+      state$().videoDom.currentTime = state$().duration * percent / 100;
+      
     }
   }
 }

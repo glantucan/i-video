@@ -8,7 +8,7 @@
     "url": "https://github.com/glantucan/i-video.git"
   },
   "author": "Glantucan (Óscar Espeso Gil)",
-  "license": "GNU Affero General Public License v3.0",
+  "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://gitlab.com/glantucan/async-programming-course/issues"
   },
