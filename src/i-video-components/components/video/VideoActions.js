@@ -4,12 +4,12 @@ function VideoPlayerActions(state$) {
       //??
     },
     play() {
-      if (state$().vState !== state$().STATES.PLAYING) {
+      if (state$().status !== state$().STATUS.PLAYING) {
         state$().videoDom.play();
       }
     },
     pause(){
-      if (state$().vState !== state$().STATES.PAUSED) {
+      if (state$().status !== state$().STATUS.PAUSED) {
         state$().videoDom.pause();
       }
     },

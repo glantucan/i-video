@@ -1,21 +1,22 @@
 import m from 'mithril';
 import stream from 'mithril/stream';
-import VideoModel, { VSTATES } from './VideoModel';
+import VideoModel, { STATUS } from './VideoModel';
 import Video from './Video';
 import VideoActions from './VideoActions';
 import VideoControls from './VideoControls';
 
 var initialState = {
-  STATES: VSTATES,
-  vState: VSTATES.NOT_READY,
+  STATUS,
+  status: STATUS.NOT_READY,
   videoDom: undefined,
   duration: 0,
   progress: 0,  
+  currentTime: 0,
 };
+
 var internalEvents = {
-  vStateChanges$: stream(VSTATES.NOT_READY),
-  videoReady$: stream(false),
-  videoProgress$: stream({
+  status$: stream({type:'unready'}),
+  progress$: stream({
     target: {
       duration:1,
       currentTime: 0
@@ -26,14 +27,15 @@ var internalEvents = {
 function VideoPlayer() {
 
   var state$ = VideoModel(initialState, internalEvents);
+  state$.map(m.redraw);
   var actions = VideoActions(state$);
-  
   return {
     oninit(v) {
       v.sinks = {
         videoState$: state$.map( s => ({
-          vState: s.vState, 
-          progress: s.progress
+          status: s.status, 
+          progress: s.progress,
+          currentTime: s.currentTime
         })),
       };
     },

@@ -7,11 +7,11 @@ function VideoControls() {
       
       return m( '.video-controls', {},
         m(Button, {
-          onclick: state.vState === state.STATES.PLAYING
+          onclick: state.status === state.STATUS.PLAYING
             ? actions.pause
             : actions.play
           },
-          state.vState === state.STATES.PLAYING
+          state.status === state.STATUS.PLAYING
             ? m('span',{style:{fontSize:'60%'}}, m.trust('&#9611;&#9611;'))
             : m.trust('&#9654;')//&#9654;
         ),
@@ -19,7 +19,7 @@ function VideoControls() {
           id: 'video-progress',
           min: 0,
           max: 100,
-          step: 1,
+          step: .01,
           // call the stream fuction the get the current value
           value: state.progress, 
           // Pass a new value to the stream function to modify the value

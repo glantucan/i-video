@@ -1,38 +1,40 @@
 import m from 'mithril';
 import stream from 'mithril/stream';
-import {VSTATES} from './i-video-components/components/video/VideoModel';
+import {STATUS} from './i-video-components/components/video/VideoModel';
 
 import VideoPlayer from './i-video-components/components/video/VideoPlayer';
 import iVideoModel from './i-video-components/IVideoModel';
 import {relay} from './libs/streamUtils';
 
-console.log(VSTATES)
+console.log(STATUS)
 
 var initialState$ = stream({
   video: {
     url: 'https://embed-ssl.wistia.com/deliveries/8b7abcbaa3fe8e31dd9dd426b3a9485483778d02/file.mp4',
-    vState: VSTATES.NOT_READY,
-    progress: 0
+    status: STATUS.NOT_READY,
+    progress: 0,
+    currentTime: 0,
   }
 });
 
 var sources = {
   video: {
     videoState$: stream({
-      vState: VSTATES.NOT_READY,
+      status: STATUS.NOT_READY,
       progress: 0
     })
   }
 }
 
 var state$ = stream.lift(
-  (state, {vState, progress}, ) => {
+  (state, {status, progress, currentTime} ) => {
     return {
       ...state,
       video: {
         ...state.video,
-        vState,
-        progress: Math.round(progress)
+        status,
+        progress: Math.round(progress),
+        currentTime,
       }
     }
   },
@@ -51,8 +53,9 @@ m.mount(mRoot, {
           relay(videoState$, sources.video.videoState$);
         }
       }),
-      m('p', `Video state: ${state$().video.vState}`),
-      m('p', `Video.progress: ${state$().video.progress}`)
+      m('p', `Video state: ${state$().video.status}`),
+      m('p', `Video.progress: ${state$().video.progress}`),
+      m('p', `Video.currantTime: ${state$().video.currentTime}`)
     );
   }
 });
